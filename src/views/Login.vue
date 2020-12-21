@@ -113,7 +113,7 @@ export default {
     Logo,
   },
   data: () => ({
-    background: '//hotel_service/images/login.jpg',
+    background: '/hotel_service/images/login.jpg',
   }),
   computed: {
     ...mapGetters(['locale']),

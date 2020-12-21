@@ -43,7 +43,7 @@
                 <div
                   class="col-lg-4 col-md-5 col img-background mr-lg-3 mr-2 rounded-lg-left
                   rounded-sm-top"
-                  :style="`background-image: url('//hotel_service/images/shopItems/${item.img}');`"
+                  :style="`background-image: url('/hotel_service/images/shopItems/${item.img}');`"
                 >
                   <div class="pt-100 d-flex align-items-center"></div>
                 </div><!-- img -->
@@ -133,7 +133,7 @@
             <div class="position-absolute in-right-top-4 d-lg-block d-md-none">
               <div
                 class="img-background rounded"
-                style="background-image: url('//hotel_service/images/user.jpg');
+                style="background-image: url('/hotel_service/images/user.jpg');
                 width: 64px; height: 64px;
               ">
               </div>
@@ -146,7 +146,7 @@
                 <div class='mr-3 d-lg-none d-md-block d-none'>
                   <div
                     class="img-background rounded"
-                    style="background-image: url('//hotel_service/images/user.jpg');
+                    style="background-image: url('/hotel_service/images/user.jpg');
                     width: 64px; height: 64px;
                   ">
                   </div>

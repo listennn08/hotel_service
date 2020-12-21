@@ -67,7 +67,7 @@
             @click.prevent
           >
             <img
-              src="//hotel_service/images/user.jpg" alt=""
+              src="/hotel_service/images/user.jpg" alt=""
               class="rounded-circle border border-primary"
               style="width: 24px; height: 24px"
             >
