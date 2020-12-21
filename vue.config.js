@@ -1,4 +1,4 @@
 module.exports = {
   // options...
-  publicPath: './',
+  publicPath: '/hotel_service',
 };
