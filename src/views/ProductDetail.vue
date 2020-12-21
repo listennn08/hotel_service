@@ -12,7 +12,7 @@
 
     <div class="d-md-none d-block mb-3">
       <div
-        style="background-image: url('/images/shopItems/items1-1.jpg')"
+        style="background-image: url('//hotel_service/images/shopItems/items1-1.jpg')"
         class="ratio ratio-4x3 img-background d-flex align-items-center"
       >
         <a
@@ -33,14 +33,14 @@
       <div class="row no-gutters flex-nowrap mb-lg-3 d-md-flex d-none">
         <div class="col-7 rounded">
           <div
-            style="background-image: url('/images/shopItems/items1-1.jpg')"
+            style="background-image: url('//hotel_service/images/shopItems/items1-1.jpg')"
             class="ratio ratio-4x3 img-background rounded"
           ></div>
         </div>
         <div class="pl-lg-2 pl-1 col-5 row no-gutters">
           <div class="col-12 mb-lg-2 mb-1">
             <div
-              style="background-image: url('/images/shopItems/items1-2.jpg')"
+              style="background-image: url('//hotel_service/images/shopItems/items1-2.jpg')"
               class="ratio ratio-16x9 img-background rounded"
             >
             </div>
@@ -48,7 +48,7 @@
           <div class="col row no-gutters flex-nowrap">
             <div class="col-5 mr-lg-2 mr-1">
               <div
-                style="background-image: url('/images/shopItems/items1-3.jpg')"
+                style="background-image: url('//hotel_service/images/shopItems/items1-3.jpg')"
                 class="ratio ratio-1x1 img-background rounded"
               >
               </div>
@@ -56,7 +56,7 @@
             <div class="col row no-gutters">
               <div class="col-12 mb-lg-2 mb-1">
                 <div
-                style="background-image: url('/images/shopItems/items1-4.jpg')"
+                style="background-image: url('//hotel_service/images/shopItems/items1-4.jpg')"
                 class="ratio ratio-4x3 img-background rounded"
               >
               </div>
@@ -148,7 +148,7 @@
               <div class="col-lg-5 col-md-4 col-6 p-0">
                 <div
                   class="img-background rounded-lg-left rounded-sm-left-top"
-                  :style="`background-image: url('/images/shopItems/${roomItem.img}');`"
+                  :style="`background-image: url('//hotel_service/images/shopItems/${roomItem.img}');`"
                 >
                   <div class="ratio ratio-4x3-p"></div>
                 </div>

@@ -2,7 +2,7 @@
   <div class="mb-md-4 media row no-gutters position-relative rounded-lg">
     <div
       class="col-md-4 col-5 img-background mr-lg-3 mr-2 rounded-lg-left"
-      :style="`background-image: url('/images/shopItems/${item.img}');`"
+      :style="`background-image: url('//hotel_service/images/shopItems/${item.img}');`"
     >
       <div class="ratio ratio-4x3 d-flex align-items-center">
         <i class="ml-1 bg-white rounded-circle p-2 material-icons hover-show">
