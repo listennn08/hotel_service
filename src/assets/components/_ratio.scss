@@ -1,0 +1,42 @@
+.ratio {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  &-1x1 {
+    --aspect-ratio: 100%;
+  }
+
+  &-4x3 {
+    --aspect-ratio: calc(3 / 4 * 100%);
+    &-p {
+      --aspect-ratio: calc(2.8 / 4 * 100%);
+
+      @include pad {
+        --aspect-ratio: 100%;
+      }
+  
+      @include mobile {
+        --aspect-ratio: 100%;
+      }
+    }
+
+    @include pad {
+      --aspect-ratio: 100%;
+    }
+
+    @include mobile {
+      --aspect-ratio: 100%;
+    }
+  }
+
+  &-16x9 {
+    --aspect-ratio: calc(9 / 16 * 100%);
+  }
+  
+  &::before {
+    content: '';
+    display: block;
+    padding-top: var(--aspect-ratio);
+  }
+}

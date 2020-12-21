@@ -1,0 +1,248 @@
+.h-170 {
+  height: 170px !important;
+}
+
+.h-320 {
+  height: 320px;
+
+  @include pad {
+    height: 315px;
+  }
+}
+
+
+.img-background {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  &-hover-pos {
+    transition: background-position .2s;
+    &:hover {
+      background-position: -100px 0, center;
+    }
+  }
+
+  &-hover-pos-top {
+    transition: background-position .2s;
+    &:hover {
+      background-position: 100% 100%;
+    }
+  }
+}
+
+.img-background-multiple {
+  background-repeat: no-repeat, no-repeat;
+  background-position: left center, center;
+  background-size: 60%, 40%;
+
+  @include pad {
+    background-size: 100%, 20%;
+  }
+
+  @include mobile {
+    background-size: 0, 100%;
+  }
+}
+
+.mw-350 {
+  max-width: 350px;
+}
+
+.mh-263 {
+  height: 263px;
+  max-height: 263px;
+
+  @include pad {
+    max-height: 158px;
+  }
+  @include mobile {
+    max-height: 181px;
+  }
+}
+
+.t-n50 {
+  top: -50px;
+
+  @include pad {
+    top: -16px;
+  }
+}
+
+.py-md-20 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  @include pad {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+.z-1 {
+  z-index: -1;
+}
+
+.py-14 {
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.mw-49 {
+  max-width: 49%;
+
+  @include pad {
+    max-width: 50%;
+  }
+}
+
+.border-left-md-1 {
+  @include pad {
+    border-left: 1px solid #f1f0f8;
+  }
+}
+
+.rounded-lg-left {
+  border-radius: .5rem 0 0 .5rem;
+
+  @include mobile {
+    border-radius: 0;
+  }
+}
+
+.rounded-sm-left-top {
+  @include mobile {
+    border-radius: .25rem 0 0 0;
+  }
+}
+
+.rounded-sm-left-bottom {
+  @include mobile {
+    border-radius: 0 0 0 .25rem;
+  }
+}
+.rounded-sm-right-top {
+  @include mobile {
+    border-radius: 0 .25rem 0 0;
+  }
+}
+
+.rounded-sm-right-bottom {
+  @include mobile {
+    border-radius: 0 0 .25rem 0;
+  }
+}
+
+.rounded-sm-top {
+  @include mobile {
+    border-radius: .25rem .25rem 0 0;
+  }
+}
+
+.bg-sm-light {
+  @include mobile {
+    background-color: $light !important;
+  }
+}
+
+.border-left-md-1 {
+  border-left: 1px solid $gray-100 !important;
+}
+
+.border-x-sm-1 {
+  @include mobile {
+    border-left: 1px solid $gray-100 !important;
+    border-right: 1px solid $gray-100 !important;
+  }
+}
+
+.border-right-top-1 {
+  @include mobile {
+    border-right: 1px solid $gray-100;
+    border-top: 1px solid $gray-100;
+  }
+}
+.border-bottom-custom {
+  @include mobile {
+    border-bottom: 0;
+  }
+}
+.border-sm-1 {
+  @include mobile {
+    border: 1px solid $gray-100;
+  }
+}
+
+.pt-100 {
+  padding-top: 80%;
+
+  @include pad {
+    padding-top: 70%;
+  }
+  @include mobile {
+    padding-top: 60%;
+  }
+}
+
+.h-md-100 {
+  height: 100%;
+  @include mobile {
+    height: auto;
+  }
+}
+.h-90 {
+  height: 90%;
+}
+
+.h-fill {
+  height: calc(100% - 62px);
+}
+
+.h-lg-fill {
+  height: calc(100% - 62px);
+
+  @include mobile {
+    height: auto;
+  }
+}
+.in-bottom {
+  left: 15px;
+  right: 15px;
+  bottom: 0;
+  @include mobile {
+    left: 0;
+    right: 0;
+  }
+}
+
+.in-right-top {
+  &-3 {
+    right: 15px;
+    top: 15px;
+    @include pad {
+      right: 8px;
+      top: 8px;
+    }
+
+    @include mobile {
+      left: 24px;
+      top: 200px;
+    }
+  }
+
+  &-4 {
+    right: 24px;
+    top: 24px;
+  }
+}
+.position-md-relative {
+  position: relative;
+
+  @include pad {
+    position: relative;
+  }
+
+  @include mobile {
+    position: static;
+  }
+}

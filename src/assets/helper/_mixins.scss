@@ -1,0 +1,74 @@
+@mixin pad {
+  @media (max-width: 768px) and (min-width: 415px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media screen and (max-width: 414px) {
+    @content;
+  }
+}
+
+$util-config: (
+  "fz": "font-size"
+);
+
+
+
+@each $property, $proeprty-value in $util-config {
+  @for $val  from 1 through 9 {
+    .#{$property}-#{$val} {
+      #{$proeprty-value}: $val * .5rem;
+      line-height: ($val + 1) * .5rem;
+    }
+
+    .#{$property}-md-#{$val} {
+
+      @include pad {
+        #{$proeprty-value}: $val * .5rem !important;
+        line-height: 1.5 !important;
+      }
+    }
+
+    .#{$property}-sm-#{$val} {
+
+      @include mobile {
+        #{$proeprty-value}: $val * .5rem !important;
+        line-height: 1.5 !important;
+      }
+    }
+  }
+}
+
+$font-weight-config:(normal, bold);
+
+@each $property in $font-weight-config {
+  .font-weight-sm-#{$property} {
+    @include mobile {
+      font-weight: $property !important;
+    }
+  }
+}
+
+@for $i from 1 through 10 {
+  
+  .w-#{$i} {
+    width: $i * 10%;
+    max-width: $i * 10%;
+  }
+
+  .w-md-#{$i} {
+    @include pad {
+      width: $i * 10%;
+      max-width: $i *10%;
+    }
+  }
+
+  .w-sm-#{i} {
+    @include mobile() {
+      width: $i * 10%;
+      max-width: $i * 10%;
+    }
+  }
+}

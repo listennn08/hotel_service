@@ -1,0 +1,31 @@
+.swiper-button-prev::after, .swiper-button-next::after {
+  font-family: 'Material Icons';
+  font-size: 24px;
+  text-transform: none !important;
+  letter-spacing: 0;
+  text-transform: none;
+  font-variant: initial;
+  line-height: 1;
+}
+
+.swiper-button-prev, .swiper-button-next {
+  border-radius: 50%;
+  background-color: #f1f0f8;
+  color: #121212;
+  padding: 8px;
+  width: 40px;
+  height: 40px;
+  top: 36%;
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.swiper-button-prev::after {
+  content: 'keyboard_arrow_left';
+}
+
+.swiper-button-next::after {
+  content: 'keyboard_arrow_right';
+}

@@ -1,0 +1,21 @@
+@import '~bootstrap/scss/functions';
+@import './base/variables';
+@import '~bootstrap/scss/mixins';
+
+@import '~bootstrap';
+
+@import './helper/mixins';
+@import './helper/utilities.scss';
+
+@import './base/base';
+@import './base/fontStyle';
+
+@import './components/tabs';
+@import './components/tag';
+@import './components/inputSelector';
+@import './components/materialDesign';
+@import './components/customForm';
+@import './components/ratio'; 
+
+@import './vendors/swiper.scss';
+@import './vendors/bootstrap.scss';

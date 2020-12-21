@@ -1,0 +1,23 @@
+.input-selector {
+  top: 110%;
+  background-color: #fff;
+  height: 250px;
+  overflow-y: scroll;
+  display: none;
+  z-index: 99;
+
+  &.show {
+    display: block !important;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &-item {
+    &:hover {
+      background: $light;
+    }
+  }
+}
+

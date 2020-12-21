@@ -1,0 +1,40 @@
+body {
+  height: 100vh;
+  overflow-x: hidden;
+  font-family: 'Raleway'
+}
+.nav-link.btn {
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.banner {
+  background-image: url('/images/banner.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.home {
+  font-family: 'Raleway', 'Noto Sans TC', sans-serif;
+}
+
+.card-img-top {
+    height:175px;
+    object-fit:cover;
+}
+
+
+.form-control {
+
+  &:focus {
+    box-shadow: none;
+    outline: none;
+  }
+
+  &[readonly]  {
+    background-color: #fff;
+  }
+}

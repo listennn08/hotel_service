@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&family=Open+Sans:wght@400;700&family=Raleway:wght@400;700;800&family=Roboto&display=swap');
+
+
+
+.fz-12 {
+  font-size: 12px !important;
+  line-height: 18px;
+}
+
+.fz-md-12 {
+  @include pad {
+    font-size: 12px !important;
+    line-height: 18px !important;
+  }
+}
+
+.fz-sm-12 {
+  @include mobile {
+    font-size: 12px !important;
+    line-height: 18px !important;
+  }
+}
+
+.lh-12 {
+  line-height: 12px !important;
+}
+.fz-14 {
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.lh-18 {
+  line-height: 18px;
+}
+
+.fz-md-14 {
+  font-size: 14px !important;
+  line-height: 18px;
+}
+
+
+.fz-sm-14 {
+  @include mobile {
+    font-size: 14px !important;
+    line-height: 21px;
+  }
+}
+
+.fz-18 {
+  font-size: 18px;
+}
+
+.fz-20 {
+  font-size: 20px !important;
+}
+
+.lh-15 {
+  line-height: 1.5;
+}
+
+.fz-md-10 {
+  @include pad {
+    font-size: 10px !important;
+    line-height: 18px;
+  }
+}
+.text-gray-50 {
+  color: #ffffff98;
+}
+.text-gray-700 {
+  color: $gray-700;
+}
+
+.text-gray-750 {
+  color: $gray-750;
+}
+
+
+.font-opensans {
+  font-family: 'Open Sans', sans-serif !important;
+}

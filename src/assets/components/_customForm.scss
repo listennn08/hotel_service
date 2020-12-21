@@ -1,0 +1,21 @@
+.custom-checkbox {
+  .custom-control-label {
+    font-family: 'Open Sans';
+    color: $gray-600;
+    padding: 0.2rem .25rem;
+    &::before {
+      width: 1.5rem;
+      height: 1.5rem;
+      border: 2px solid $dark;
+    }
+
+    &::after {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    .material-icons {
+      font-size: 18px;
+    }
+  }
+}
