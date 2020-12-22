@@ -1,7 +1,7 @@
 <template>
   <section>
     <BaseSearchForm class="d-md-block d-none" />
-    <div class="bg-light d-flex align-items-center">
+    <div class="d-md-none bg-light d-flex align-items-center">
       <div class="d-flex align-items-center my-1 p-3">
         <i class="material-icons">arrow_back</i>
       </div>
