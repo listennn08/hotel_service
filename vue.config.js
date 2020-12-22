@@ -1,4 +1,5 @@
 module.exports = {
-  // options...
-  publicPath: '/hotel_service',
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/hotel_service'
+    : '/',
 };
