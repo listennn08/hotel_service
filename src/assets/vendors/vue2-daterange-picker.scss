@@ -1,0 +1,26 @@
+.vue-daterange-picker {
+  display: block !important;
+  width: 78%;
+}
+.calendar-table {
+  .table-condensed {
+    .today {
+      color: $primary;
+
+      &.active {
+        color: $white;
+      }
+    }
+    
+    .in-range {
+      background-color: $gray-100;
+      &.active {
+        background-color: $primary;
+  
+        &:hover {
+          background-color: $primary;
+        }
+      }
+    }
+  }
+}

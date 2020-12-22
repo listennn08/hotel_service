@@ -88,13 +88,36 @@
                     <i class="material-icons">date_range</i>
                   </span>
                 </div>
-                <input
-                  type="text"
-                  class="form-control px-1 py-3 h-auto border-left-0"
-                  :placeholder="`${this.$t('message.checkIn')} / ${this.$t('message.checkOut')}`"
-                  aria-label="date_range"
-                  aria-describedby="basic-addon-date_range"
+                <!--
+                  <input
+                    type="text"
+                    class="form-control px-1 py-3 h-auto border-left-0"
+                    :placeholder="`${this.$t('message.checkIn')} / ${this.$t('message.checkOut')}`"
+                    aria-label="date_range"
+                    aria-describedby="basic-addon-date_range"
+                  > -->
+                <date-range-picker
+                  ref="picker"
+                  opens="center"
+                  :locale-data="localeData"
+                  :timePicker="false"
+                  :timePicker24Hour="false"
+                  :showWeekNumbers="false"
+                  :showDropdowns="false"
+                  :ranges="false"
+                  :autoApply="true"
+                  v-model="dateRange"
+                  :linkedCalendars="false"
+                  control-container-class="form-control px-1 py-3 h-auto border-left-0"
+                  :dateFormat="dateFormat"
                 >
+                  <template
+                    #input="picker"
+                    style="min-width: 350px;"
+                  >
+                      {{ showDateRange(picker) }}
+                  </template>
+                </date-range-picker>
               </div>
             </div>
           </div>
@@ -350,6 +373,9 @@
   </div>
 </template>
 <script>
+import { format } from 'date-fns';
+import DateRangePicker from 'vue2-daterange-picker';
+import 'vue2-daterange-picker/dist/vue2-daterange-picker.css';
 import dataMixin from '@/mixins/homeDataMixin';
 import mixin from '@/mixins/mixinFn';
 import SwiperComponent from '@/components/BaseSwiperComponent.vue';
@@ -363,6 +389,7 @@ export default {
     SwiperComponent,
     Footer,
     FooterNavbar,
+    DateRangePicker,
   },
   directives: {
     'click-away': {
@@ -386,6 +413,11 @@ export default {
     priceFont() {
       return (num) => (num ? 'fz-12 text-strikthrogh' : 'fz-14');
     },
+    showDateRange() {
+      return (picker) => (picker.startDate || picker.endDate
+        ? `${this.format(picker.startDate)} - ${this.format(picker.endDate)}`
+        : `${this.$t('message.checkIn')} / ${this.$t('message.checkOut')}`);
+    },
   },
   data: () => ({
     currentTab: 'Bali',
@@ -395,6 +427,32 @@ export default {
     adult: 2,
     child: 0,
     room: 1,
+    dateRange: {
+      startDate: null,
+      endDate: null,
+    },
+    localeData: {
+      firstDay: 0,
+      direction: 'ltr',
+      format: 'mm/dd/yyyy',
+      separator: ' - ',
+      customRangeLabel: 'Custom Range',
+      daysOfWeek: ['S', 'M', 'Tu', 'W', 'T', 'F', 'St'],
+      monthNames: [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+      ],
+    },
     tabItems: [
       {
         title: 'Bali',
@@ -474,6 +532,9 @@ export default {
       const { country, city } = this.popularDestinations[index];
       this.destination = `${this.$t(`message.${city}`)}, ${this.$t(`message.${country}`)}`;
       this.showDestination = false;
+    },
+    format(date) {
+      return format(new Date(date), 'dd MMM');
     },
   },
 };
