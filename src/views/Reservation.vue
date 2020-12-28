@@ -209,12 +209,13 @@
   </div>
 </template>
 <script>
+import Vue from 'vue';
 import { mapGetters } from 'vuex';
 import { format } from 'date-fns';
 import { enUS, zhTW } from 'date-fns/locale';
 import FooterSimpleNavbar from '@/components/BaseFooterSimpleNavbar.vue';
 
-export default {
+export default Vue.extend({
   name: 'Reservation',
   components: {
     FooterSimpleNavbar,
@@ -241,7 +242,7 @@ export default {
       this.hide = !this.hide;
     },
   },
-};
+});
 </script>
 <style lang="scss" scoped>
   .dropdown-menu-right {

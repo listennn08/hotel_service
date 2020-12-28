@@ -107,45 +107,47 @@
     </div> <!-- media body -->
   </div> <!-- media -->
 </template>
-<script>
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator';
 import { mapGetters } from 'vuex';
-// import StarRating from 'vue-star-rating';
 
-export default {
+@Component({
   name: 'ShopCard',
-  components: {
-    // StarRating,
-  },
   computed: {
     ...mapGetters(['locale', 'currency']),
-    fromCenterText() {
-      return (distance) => {
-        const km = this.$t('message.km');
-        const fromCenter = this.$t('message["from center"]');
-        if (this.locale === 'en') {
-          return `${distance} ${km} ${fromCenter}`;
-        }
-        return `${fromCenter} ${distance} ${km}`;
-      };
-    },
-    detactPlural() {
-      return (number, text) => {
-        if (number) {
-          if (number > 1) {
-            return `${number} ${this.$t(`message["${text}s"]`)}`;
-          }
-          return `${number} ${this.$t(`message["${text}"]`)}`;
-        }
-        return '';
-      };
-    },
   },
-  props: {
-    item: {
-      type: Object,
-      required: true,
-    },
-  },
+})
+export default class BaseShopCard extends Vue {
+  locale!: string
 
-};
+  currency!: string
+
+  @Prop() private item!: {
+    type: Object,
+    required: true,
+  }
+
+  get fromCenterText() {
+    return (distance: string) => {
+      const km = this.$t('message.km');
+      const fromCenter = this.$t('message["from center"]');
+      if (this.locale === 'en') {
+        return `${distance} ${km} ${fromCenter}`;
+      }
+      return `${fromCenter} ${distance} ${km}`;
+    };
+  }
+
+  get detactPlural() {
+    return (number: number, text: string) => {
+      if (number) {
+        if (number > 1) {
+          return `${number} ${this.$t(`message["${text}s"]`)}`;
+        }
+        return `${number} ${this.$t(`message["${text}"]`)}`;
+      }
+      return '';
+    };
+  }
+}
 </script>

@@ -13,17 +13,16 @@
     </div>
   </SwiperSlide>
 </template>
-<script>
-export default {
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator';
+
+@Component({
   name: 'SwiperComponent',
-  props: {
-    fontClass: {
-      type: String,
-      default: '',
-    },
-    cardClass: {
-      // default: 'col-md-3',
-    },
-  },
-};
+})
+export default class BaseSwiperComponent extends Vue {
+  @Prop() private fontClass!: {
+    type: String,
+    default: '',
+  }
+}
 </script>

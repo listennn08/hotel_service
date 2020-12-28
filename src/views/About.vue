@@ -4,12 +4,14 @@
     <MultiSlider class="col-3"/>
   </div>
 </template>
-<script>
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
 import MultiSlider from '@/components/BaseMultiSlider.vue';
 
-export default {
+@Component({
   components: {
     MultiSlider,
   },
-};
+})
+export default class About extends Vue { }
 </script>

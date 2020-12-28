@@ -85,17 +85,19 @@
     </div>
   </nav>
 </template>
-<script>
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
 import mixins from '@/mixins/mixinFn';
 import Logo from '@/components/Logo.vue';
 
-export default {
+@Component({
   name: 'Navbar',
   mixins: [mixins],
   components: {
     Logo,
   },
-};
+})
+export default class BaseNavbar extends Vue { }
 </script>
 <style lang="scss" scoped>
 .nav-link {

@@ -103,23 +103,27 @@
     </main>
   </div>
 </template>
-<script>
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
 import { mapGetters } from 'vuex';
 
 import Logo from '@/components/Logo.vue';
 
-export default {
+@Component({
   components: {
     Logo,
   },
-  data: () => ({
-    background: '/hotel_service/images/login.jpg',
-  }),
   computed: {
     ...mapGetters(['locale']),
-    enSpace() {
-      return (this.locale === 'en' ? ' ' : '');
-    },
   },
-};
+})
+export default class Login extends Vue {
+  private background = '/hotel_service/images/login.jpg'
+
+  locale!: string
+
+  get enSpace() {
+    return (this.locale === 'en' ? ' ' : '');
+  }
+}
 </script>

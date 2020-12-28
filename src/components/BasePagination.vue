@@ -73,8 +73,11 @@
     </ul>
 </nav>
 </template>
-<script>
-export default {
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+
+@Component({
   name: 'Pagination',
-};
+})
+export default class BasePagination extends Vue { }
 </script>

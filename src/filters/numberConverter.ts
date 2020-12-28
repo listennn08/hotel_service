@@ -1,6 +1,6 @@
 import Vue from 'vue';
 
-Vue.filter('numberConverter', (num) => {
+Vue.filter('numberConverter', (num: number) => {
   if (typeof num === 'number') {
     switch (true) {
       case num > 999 && num < 1000000:
@@ -16,7 +16,7 @@ Vue.filter('numberConverter', (num) => {
   return '';
 });
 
-Vue.filter('price', (num) => {
+Vue.filter('price', (num: number|string) => {
   if (
     typeof num === 'number'
       || !Number.isNaN(Number(num))

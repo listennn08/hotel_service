@@ -31,8 +31,12 @@
     </section>
   </nav>
 </template>
-<script>
-export default {
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+
+@Component({
   name: 'FooterSimpleNavbar',
-};
+})
+
+export default class BaseFooterSimpleNavbar extends Vue { }
 </script>

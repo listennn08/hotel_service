@@ -240,17 +240,22 @@
     </div>
   </form>
 </template>
-<script>
-import dataMixin from '@/mixins/homeDataMixin';
-import mixinFn from '@/mixins/mixinFn';
+<script lang="ts">
+import { Component, Watch } from 'vue-property-decorator';
+import MixinFn from '@/mixins/mixinFn';
+// eslint-disable-next-line no-unused-vars
+import { LocaleMessage } from 'vue-i18n';
 
-export default {
-  mixins: [mixinFn, dataMixin],
+type TOjbect = {
+  [k: string]: any
+}
+
+@Component({
   directives: {
     'click-away': {
-      bind(el, binding, vnode) {
+      bind(el, binding, vnode: any) {
         const copyel = el;
-        copyel.clickOutsideEvent = (event) => {
+        copyel.clickOutsideEvent = (event: any) => {
           // here I check that click was outside the el and his children
           if (!(el === event.target || el.contains(event.target))) {
             // and if it did, call method provided in attribute value
@@ -264,105 +269,117 @@ export default {
       },
     },
   },
-  data: () => ({
-    city: 'Bangkok',
-    country: 'Thailand',
-    guest: '2 adults・1 room',
-    checkIn: '17 June',
-    checkOut: '19 June',
-    showDestination: false,
-    showGuest: false,
-    windowSize: document.body.clientWidth,
-    guestObj: {
-      adult: 2,
-      child: 0,
-      room: 1,
-    },
-  }),
-  watch: {
-    locale: {
-      handler() {
-        const replace = this.guest;
-        this.guest = replace;
-      },
-    },
-    guestObj: {
-      deep: true,
-      handler() {
-        const { adult, child, room } = this.guestObj;
-        const message = [];
-        this.guest = '';
-        if (adult) {
-          if (adult > 1) {
-            message.push(`${adult} ${this.$t('message.peopleUnit')}${this.$t('message.adults')}`);
-          } else {
-            message.push(`${adult} ${this.$t('message.peopleUnit')}${this.$t('message.adult')}`);
-          }
-        }
-        if (child) {
-          if (child > 1) {
-            message.push(`${child} ${this.$t('message.peopleUnit')}${this.$t('message.children')}`);
-          } else {
-            message.push(`${child} ${this.$t('message.peopleUnit')}${this.$t('message.child')}`);
-          }
-        }
-        if (room) {
-          if (room > 1) {
-            message.push(`${room} ${this.$t('message.roomUnit')}${this.$t('message.rooms')}`);
-          } else {
-            message.push(`${room} ${this.$t('message.roomUnit')}${this.$t('message.room')}`);
-          }
-        }
-        this.guest += message.join('・');
-        if (this.guest === '') {
-          this.guest = null;
-        }
-      },
-    },
-  },
-  computed: {
-    hasValue() {
-      return (v) => this[v];
-    },
-    date() {
-      return `${this.checkIn} - ${this.checkOut}`;
-    },
-    destination() {
-      if (this.windowSize <= 414) {
-        return `${this.city}`;
+})
+export default class BaseSearchFrom extends MixinFn {
+  city: LocaleMessage = 'Bangkok'
+
+  country: LocaleMessage = 'Thailand'
+
+  guest: string|null = '2 adults・1 room'
+
+  checkIn = '17 June'
+
+  checkOut = '19 June'
+
+  showDestination = false
+
+  showGuest = false
+
+  windowSize = document.body.clientWidth
+
+  guestObj: { [k: string]: number } = {
+    adult: 2,
+    child: 0,
+    room: 1,
+  }
+
+  @Watch('locale')
+  onLocaleChange() {
+    const replace = this.guest;
+    this.guest = replace;
+  }
+
+  @Watch('guestObj', { deep: true })
+  onGuestObjChange() {
+    const { adult, child, room } = this.guestObj;
+    const message = [];
+    this.guest = '';
+    if (adult) {
+      if (adult > 1) {
+        message.push(`${adult} ${this.$t('message.peopleUnit')}${this.$t('message.adults')}`);
+      } else {
+        message.push(`${adult} ${this.$t('message.peopleUnit')}${this.$t('message.adult')}`);
       }
-      return `${this.city}, ${this.country}`;
-    },
-  },
-  methods: {
-    closeDestinaionSelector() {
-      this.showDestination = false;
-    },
-    closeGuestSelector() {
-      this.showGuest = false;
-    },
-    count(item, action) {
-      switch (action) {
-        case 'p':
-          this.guestObj[item] += 1;
-          break;
-        case 'm':
-          this.guestObj[item] -= 1;
-          break;
-        default:
+    }
+    if (child) {
+      if (child > 1) {
+        message.push(`${child} ${this.$t('message.peopleUnit')}${this.$t('message.children')}`);
+      } else {
+        message.push(`${child} ${this.$t('message.peopleUnit')}${this.$t('message.child')}`);
       }
-    },
-    changeDestination(index) {
-      const { country, city } = this.popularDestinations[index];
-      this.city = this.$t(`message.${city}`);
-      this.country = this.$t(`message.${country}`);
-      this.showDestination = false;
-    },
-    gotoProducts() {
-      if (!this.$route.path.includes('products')) {
-        this.$router.push('/products');
+    }
+    if (room) {
+      if (room > 1) {
+        message.push(`${room} ${this.$t('message.roomUnit')}${this.$t('message.rooms')}`);
+      } else {
+        message.push(`${room} ${this.$t('message.roomUnit')}${this.$t('message.room')}`);
       }
-    },
-  },
-};
+    }
+    this.guest += message.join('・');
+    if (this.guest === '') {
+      this.guest = null;
+    }
+  }
+
+  get hasValue() {
+    return (v: string) => {
+      const el: TOjbect = this;
+      return el[v];
+    };
+  }
+
+  get date() {
+    return `${this.checkIn} - ${this.checkOut}`;
+  }
+
+  get destination() {
+    if (this.windowSize <= 414) {
+      return `${this.city}`;
+    }
+    return `${this.city}, ${this.country}`;
+  }
+
+  closeDestinaionSelector() {
+    this.showDestination = false;
+  }
+
+  closeGuestSelector() {
+    this.showGuest = false;
+  }
+
+  count(item: string, action: string) {
+    switch (action) {
+      case 'p':
+        this.guestObj[item] += 1;
+        break;
+      case 'm':
+        this.guestObj[item] -= 1;
+        break;
+      default:
+    }
+  }
+
+  changeDestination(index: number) {
+    const { country, city } = this.popularDestinations[index];
+    this.city = this.$t(`message.${city}`);
+    this.country = this.$t(`message.${country}`);
+    this.showDestination = false;
+  }
+
+  gotoProducts() {
+    if (!this.$route.path.includes('products')) {
+      this.$router.push('/products');
+    }
+  }
+}
 </script>

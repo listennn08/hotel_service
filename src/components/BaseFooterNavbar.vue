@@ -86,11 +86,13 @@
     </section>
   </nav>
 </template>
-<script>
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
 import mixins from '@/mixins/mixinFn';
 
-export default {
+@Component({
   name: 'FooterNavbar',
   mixins: [mixins],
-};
+})
+export default class BaseFooterNavBar extends Vue { }
 </script>

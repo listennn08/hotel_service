@@ -33,19 +33,20 @@
     </div>
   </footer>
 </template>
-<script>
-export default {
-  name: 'Footer',
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
 
-  data: () => ({
-    email: null,
-  }),
-  methods: {
-    submit() {
-      if (this.email) {
-        this.$swal({});
-      }
-    },
-  },
-};
+@Component({
+  name: 'Footer',
+})
+
+export default class BaseFooter extends Vue {
+  private email: string|null = null;
+
+  submit() {
+    if (this.email) {
+      this.$swal({});
+    }
+  }
+}
 </script>

@@ -8,10 +8,10 @@
         :min="min"
         :max="max"
         step="50"
-        @mouseover="toggleHover('left')"
-        @mouseout="toggleHover('left')"
-        @mousedown="toggleActive('left')"
-        @mouseup="toggleActive('left')"
+        @mouseover="toggleHover(true)"
+        @mouseout="toggleHover(true)"
+        @mousedown="toggleActive(true)"
+        @mouseup="toggleActive(true)"
       >
       <input
         type="range"
@@ -20,10 +20,10 @@
         :min="min"
         :max="max"
         step="50"
-        @mouseover="toggleHover('right')"
-        @mouseout="toggleHover('right')"
-        @mousedown="toggleActive('right')"
-        @mouseup="toggleActive('right')"
+        @mouseover="toggleHover(false)"
+        @mouseout="toggleHover(false)"
+        @mousedown="toggleActive(false)"
+        @mouseup="toggleActive(false)"
       >
       <div class="slider">
         <div class="track"></div>
@@ -44,71 +44,94 @@
     </div>
   </div>
 </template>
-<script>
-export default {
-  props: {
-    budget: {
-      type: Object,
-    },
-  },
-  data: () => ({
-    min: 800,
-    max: 4000,
-    left: {
-      value: 800,
-      hover: false,
-      active: false,
-      position: '0%',
-      transform: 'translate(0px, -7px)',
-    },
-    right: {
-      value: 4000,
-      hover: false,
-      active: false,
-      position: '0%',
-      transform: 'translate(0px, -7px)',
-    },
-  }),
-  watch: {
-    'budget.min': {
-      handler() {
-        this.left.position = `${((this.budget.min - this.min) / (this.max - this.min)) * 100}%`;
-        this.left.transform = `translate(${-((this.budget.min - this.min) / (this.max - this.min)) * 100}%, -7px);`;
-      },
-    },
-    'budget.max': {
-      handler() {
-        this.right.position = `${100 - (((this.budget.max - this.min) / (this.max - this.min)) * 100)}%`;
-        this.right.transform = `translate(${100 - ((this.budget.max - this.min) / (this.max - this.min)) * 100}%, -7px);`;
-      },
-    },
-  },
-  computed: {
-    LeftValue: {
-      get() { return Math.min(this.budget.min, this.budget.max - 1); },
-      set(val) {
-        this.budget.min = Math.min(val, this.budget.max - 1);
-        this.$emit('budget:update', this.budget.min);
-      },
-    },
-    RightValue: {
-      get() { return Math.max(this.budget.max, this.budget.min + 1); },
-      set(val) {
-        this.budget.max = Math.max(val, this.budget.min + 1);
-        this.$emit('budget:update', this.budget.max);
-      },
-    },
-  },
-  methods: {
-    toggleHover(site) {
-      this[site].hover = !this[site].hover;
-    },
-    toggleActive(site) {
-      this[site].active = !this[site].active;
-    },
-  },
+<script lang="ts">
+import {
+  Component, Watch, Prop, Vue,
+} from 'vue-property-decorator';
 
-};
+type TSlider = {
+  value: number;
+  hover: boolean;
+  active: boolean;
+  position: string;
+  transform: string;
+}
+
+type TBudget = {
+  min: number,
+  max: number
+}
+
+@Component
+export default class BaseMultiSlider extends Vue {
+  @Prop() private budget!: TBudget;
+
+  private min: number = 800;
+
+  private max: number = 4000;
+
+  private left: TSlider = {
+    value: 800,
+    hover: false,
+    active: false,
+    position: '0%',
+    transform: 'translate(0px, -7px)',
+  };
+
+  private right: TSlider = {
+    value: 4000,
+    hover: false,
+    active: false,
+    position: '0%',
+    transform: 'translate(0px, -7px)',
+  };
+
+  @Watch('budget.min')
+  onMinChange() {
+    this.left.position = `${((this.budget.min - this.min) / (this.max - this.min)) * 100}%`;
+    this.left.transform = `translate(${-((this.budget.min - this.min) / (this.max - this.min)) * 100}%, -7px);`;
+  }
+
+  @Watch('budget.max')
+  onMaxChange() {
+    this.right.position = `${100 - (((this.budget.max - this.min) / (this.max - this.min)) * 100)}%`;
+    this.right.transform = `translate(${100 - ((this.budget.max - this.min) / (this.max - this.min)) * 100}%, -7px);`;
+  }
+
+  get LeftValue() {
+    return Math.min(this.budget.min, this.budget.max - 1);
+  }
+
+  set LeftValue(val) {
+    this.budget.min = Math.min(val, this.budget.max - 1);
+    this.$emit('budget:update', this.budget.min);
+  }
+
+  get RightValue() {
+    return Math.max(this.budget.max, this.budget.min + 1);
+  }
+
+  set RightValue(val) {
+    this.budget.max = Math.max(val, this.budget.min + 1);
+    this.$emit('budget:update', this.budget.max);
+  }
+
+  toggleHover(site: boolean) {
+    if (site) {
+      this.left.hover = !this.left.hover;
+      return;
+    }
+    this.right.hover = !this.right.hover;
+  }
+
+  toggleActive(site: boolean) {
+    if (site) {
+      this.left.active = !this.left.active;
+      return;
+    }
+    this.right.active = !this.right.active;
+  }
+}
 </script>
 <style lang="scss" scoped>
 @import '../assets/components/multiSlider';
