@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-light py-md-20">
+  <footer class="bg-light  pt-md-20">
     <div class="container py-md-5 mx-auto row no-gutters align-items-center justify-content-center">
       <section class="col py-4">
         <h2 class="fz-6 fz-sm-3 mb-4 font-weight-bolder text-dark text-center">
@@ -31,6 +31,7 @@
         </form>
       </section>
     </div>
+    <slot name="nav"></slot>
   </footer>
 </template>
 <script>

@@ -1,8 +1,8 @@
 <template>
   <section class="h-lg-fill position-relative">
     <section class="container pt-4 position-relative pb-md-0 pb-5">
-      <div class="row flex-lg-row flex-column">
-        <div class="col-lg-8 col order-lg-1 order-2 mb-md-0 mb-5">
+      <div class="row flex-lg-row flex-column flex-md-row flex-row-reverse">
+        <div class="col-lg-8 col order-lg-1 mb-md-0 mb-5">
           <h2 class="h4 font-weight-bold mb-4">
             {{ $t('message["My Bookings"]') }}
           </h2>
@@ -37,7 +37,7 @@
               :class="{'border-bottom border-bottom-sm-2': index !== roomItems.length - 1}"
             >
               <div
-                class="mb-md-4 media row no-gutters position-relative rounded-lg
+                class="mb-md-4 card border-0 row no-gutters position-relative rounded-lg
                 flex-md-row flex-column align-items-center"
               >
                 <div
@@ -103,7 +103,7 @@
             </li>
           </ul>
         </div><!-- col-8 -->
-        <div class="col-lg-4 col order-lg-2 order-1">
+        <div class="col-lg-4 col order-lg-2">
           <div
             class="mb-4 d-flex align-items-center justify-content-between"
           >

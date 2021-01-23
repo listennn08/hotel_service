@@ -1,5 +1,8 @@
 <template>
-  <div class="h-90 position-relative">
+  <div
+    style="height: 90%;"
+    class="position-relative"
+  >
     <div
       class="bg-light d-md-none"
     >
@@ -93,7 +96,7 @@
     </div>
     <section class="mt-4 container h-100 position-md-relative">
       <div class="row no-gutters h-75 mb-5">
-        <div class="offset-lg-2 col-lg-8 col row mx-md-auto mx-0 h-100">
+        <div class="col-lg-8 col row mx-md-auto mx-0 h-100">
           <div class="col-md-6 col pl-md-0">
             <h3 class="font-weight-bold mb-4">
               {{ $t('message["Reservation details"]') }}

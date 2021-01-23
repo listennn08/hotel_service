@@ -2,9 +2,11 @@
   <section>
     <BaseSearchForm class="d-md-block d-none" />
     <div class="d-md-none bg-light d-flex align-items-center">
-      <div class="d-flex align-items-center my-1 p-3">
+      <router-link
+        to="/products"
+        class="d-flex align-items-center my-1 p-3 text-decoration-none text-dark">
         <i class="material-icons">arrow_back</i>
-      </div>
+      </router-link>
       <span class="text-secondary fz-12 font-opensans">
         Bangkok・17 June - 19 June・2 adults・1 room
       </span>

@@ -1,29 +1,32 @@
 <!-- eslint-disable max-len -->
 <template>
   <div class="home">
-    <header class="h-320 banner">
-      <div class="container h-100 mx-auto row no-gutters align-items-center">
-        <div class="col-lg-10 col offset-lg-1">
-          <h2
-            class=
-              "fz-6 fz-sm-4 text-white row justify-content-between"
-          >
+    <header class="banner">
+      <div class="container h-100 mx-auto d-flex flex-column justify-content-center">
+        <div class="row no-gutters align-items-center">
+          <div class="col-1">
             <a href="#" class="text-white text-decoration-none d-flex align-items-center">
               <i class="material-icons fz-6 font-weight-bolder font-weight-sm-normal">chevron_left</i>
             </a>
-            <span class="font-weight-bolder font-weight-sm-bold col-lg-10 col-md-6 col text-center">
+          </div>
+          <h2
+            class= "col-lg-10 col-md-6 col fz-6 fz-sm-4 text-white text-center"
+          >
+            <span class="font-weight-bolder font-weight-sm-bold ">
               {{ $t('message.slogan') }}
             </span>
-            <a href="#" class="text-white text-decoration-none d-flex align-items-center">
-              <i class="material-icons fz-6 font-weight-bolder font-weight-sm-normal">chevron_right</i>
-            </a>
           </h2>
+          <div class="col-1">
+            <a href="#" class="text-white text-decoration-none d-flex align-items-center">
+                <i class="material-icons fz-6 font-weight-bolder font-weight-sm-normal">chevron_right</i>
+            </a>
+          </div>
         </div>
       </div>
     </header>
-    <div class="container mx-auto">
+    <div class="container">
       <div
-        class="row no-gutters t-n50 wow slideInDown position-relative"
+        class="row t-n50 wow slideInDown position-relative"
         data-wow-duration="1s"
       >
         <form
@@ -54,15 +57,15 @@
                   readonly
                   @focus="showDestination = true"
                 >
-                <div
+                <ul
                   id="destination-selector"
-                  class="position-absolute col card p-0 shadow input-selector"
+                  class="position-absolute col card p-0 shadow input-selector px-3 pt-2"
                   :class="{'show': showDestination}"
                 >
-                  <div
+                  <li
                     v-for="(destination, index) in popularDestinations"
                     :key="destination.city"
-                    class="px-3 pt-2 d-flex input-selector-item"
+                    class="d-flex input-selector-item"
                     @click="changeDestination(index)"
                   >
                     <i class="material-icons mr-2">star</i>
@@ -72,8 +75,8 @@
                         {{ $t(`message.${destination.country}`) }}
                         </small>
                     </p>
-                  </div>
-                </div>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
@@ -88,14 +91,6 @@
                     <i class="material-icons">date_range</i>
                   </span>
                 </div>
-                <!--
-                  <input
-                    type="text"
-                    class="form-control px-1 py-3 h-auto border-left-0"
-                    :placeholder="`${this.$t('message.checkIn')} / ${this.$t('message.checkOut')}`"
-                    aria-label="date_range"
-                    aria-describedby="basic-addon-date_range"
-                  > -->
                 <date-range-picker
                   ref="picker"
                   opens="center"
@@ -211,7 +206,7 @@
           </div>
           <div class="col-lg-2 col">
             <button
-              class="col btn btn-primary text-uppercase py-3 px-lg-4 px-md-3"
+              class="btn-block btn-primary text-uppercase py-3 px-lg-4 px-md-3"
               @click.prevent="$router.push('/products')"
             >
               <span class="px-lg-2 font-weight-bold">{{ $t('message.search') }}</span>
@@ -223,26 +218,28 @@
       <main class="font-weight-bold py-lg-4 mb-5">
         <section class="mb-md-2" ref="destinationContainer">
           <h2 class="fz-4 text-gray-750 mb-3">{{ $t('message["Top Choices"]') }}</h2>
-          <ul class="tabs">
-            <li
-              v-for="item in tabItems"
-              :key="item.title"
-            >
-              <a
-                href="#"
-                class="tabs-item"
-                :class="{'active': item.title === currentTab}"
-                @click.prevent="currentTab = item.title"
+          <nav>
+            <ul class="tabs">
+              <li
+                v-for="item in tabItems"
+                :key="item.title"
               >
-                {{ $t(`message.${item.title}`) }}
-                <sup
-                  :class="{'z-1': showDestination}"
+                <a
+                  href="#"
+                  class="tabs-item"
+                  :class="{'active': item.title === currentTab}"
+                  @click.prevent="currentTab = item.title"
                 >
-                  {{ item.number }}
-                </sup>
-              </a>
-            </li>
-          </ul>
+                  {{ $t(`message.${item.title}`) }}
+                  <sup
+                    :class="{'z-1': showDestination}"
+                  >
+                    {{ item.number }}
+                  </sup>
+                </a>
+              </li>
+            </ul>
+          </nav>
           <Swiper
             id="topChoicesSwiper"
             :options="topChoicesSwiperOption"
@@ -299,9 +296,9 @@
         </section>
         <section class="pt-5 mb-md-2">
           <h2 class="fz-4 text-gray-750 mb-3">{{ $t('message["Popular Destinations"]') }}</h2>
-          <ul class="list-unstyled row flex-md-row flex-column">
+          <ul class="list-unstyled row">
             <li
-              class="col-md-4 col wow flipInY"
+              class="col-md-6 col-lg-4 wow flipInY"
               v-for="(destination, i) in popularDestinations"
               :key="destination.city"
               data-wow-duration="1s"
@@ -320,12 +317,12 @@
                   aria-expanded="false"
                 >
                 <div>
-                  <div class="fz-12 text-gray-50 font-weight-bold text-uppercase">
+                  <h5 class="fz-12 text-gray-50 font-weight-bold text-uppercase">
                     {{ $t(`message.${destination.country}`) }}
-                  </div>
-                  <div class="fz-3 text-white font-weight-bold">
+                  </h5>
+                  <h6 class="fz-3 text-white font-weight-bold">
                     {{ $t(`message.${destination.city}`) }}
-                  </div>
+                  </h6>
                 </div>
                 <i class="material-icons">keyboard_arrow_down</i>
                 </a>
@@ -334,12 +331,14 @@
           </ul>
         </section>
         <section class="pt-5">
-          <h2 class="d-flex justify-content-between mb-3">
-            <span class="fz-4 text-gray-750">{{ $t('message["Get Inspiration"]') }}</span>
+          <div class="d-flex justify-content-between mb-3">
+            <h2>
+              <span class="fz-4 text-gray-750">{{ $t('message["Get Inspiration"]') }}</span>
+            </h2>
             <a href="#" class="btn btn-outline-primary py-2 px-3">
-              {{ $t('message["see more"]') }}
+                {{ $t('message["see more"]') }}
             </a>
-          </h2>
+          </div>
           <Swiper
             :options="getInspirationSwiperOption"
           >
@@ -368,8 +367,11 @@
         </section>
       </main>
     </div>
-    <Footer />
-    <FooterNavbar />
+    <Footer>
+      <template #nav>
+        <FooterNavbar />
+      </template>
+    </Footer>
   </div>
 </template>
 <script>

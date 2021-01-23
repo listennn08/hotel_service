@@ -243,7 +243,8 @@
         </div>
         <div class="col-md-8 col px-md-3 px-0">
           <ul
-            class="list-group list-group-horizontal d-md-flex d-none mb-4 font-weight-bold opensans"
+            class="list-group list-group-horizontal d-md-flex d-none mb-4 font-weight-bold
+            font-opensans flex-nowrap overflow-auto"
           >
             <li
               class="list-group-item-custom"
@@ -251,6 +252,7 @@
               <a
                 href="#"
                 @click.prevent="shortBy(0)"
+                class="text-nowrap"
                 :class="{'active': pageActive[0]}"
               >
                 {{ $t('message.recommended') }}
@@ -262,6 +264,7 @@
               <a
                 href="#"
                 @click.prevent="shortBy(1)"
+                class="text-nowrap"
                 :class="{'active': pageActive[1]}"
               >
                 {{ $t('message.lowestPrice') }}
@@ -273,6 +276,7 @@
               <a
                 href="#"
                 @click.prevent="shortBy(2)"
+                class="text-nowrap"
                 :class="{'active': pageActive[2]}"
               >
                 {{ $t('message.bestValue') }}
@@ -284,6 +288,7 @@
               <a
                 href="#"
                 @click.prevent="shortBy(3)"
+                class="text-nowrap"
                 :class="{'active': pageActive[3]}"
               >
                 {{ $t('message.distanceToCityCenter') }}
