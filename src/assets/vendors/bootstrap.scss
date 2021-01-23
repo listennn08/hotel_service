@@ -1,6 +1,8 @@
-// .container {
-//   height: calc(100% - 62px);
-// }
+.list-group {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
 .list-group-item {
   a {
     color: $dark;

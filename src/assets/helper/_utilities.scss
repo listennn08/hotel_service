@@ -2,15 +2,6 @@
   height: 170px !important;
 }
 
-.h-320 {
-  height: 320px;
-
-  @include pad {
-    height: 315px;
-  }
-}
-
-
 .img-background {
   background-repeat: no-repeat;
   background-position: center center;
@@ -36,7 +27,7 @@
   background-position: left center, center;
   background-size: 60%, 40%;
 
-  @include pad {
+  @include desktop {
     background-size: 100%, 20%;
   }
 
@@ -69,13 +60,11 @@
   }
 }
 
-.py-md-20 {
+.pt-md-20 {
   padding-top: 20px;
-  padding-bottom: 20px;
 
   @include pad {
     padding-top: 0;
-    padding-bottom: 0;
   }
 }
 
@@ -189,9 +178,6 @@
   @include mobile {
     height: auto;
   }
-}
-.h-90 {
-  height: 90%;
 }
 
 .h-fill {

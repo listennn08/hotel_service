@@ -1,6 +1,6 @@
 .vue-daterange-picker {
   display: block !important;
-  width: 78%;
+  width: calc(100% - 49px);
 }
 .calendar-table {
   .table-condensed {
